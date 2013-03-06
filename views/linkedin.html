@@ -1,0 +1,18 @@
+<html>
+<head></head>
+<body>
+	<h1>Hello Linkedin!!!</h1>
+	<ul>
+		<li>code: <%= code %></li>
+		<li>state: <%= state %></li>
+	</ul>
+	<a href="https://www.linkedin.com/uas/oauth2/accessToken
+						?grant_type=authorization_code
+						&code=<%= code %>
+						&redirect_uri=YOUR_REDIRECT_URI
+						&client_id=YOUR_API_KEY
+						&client_secret=YOUR_SECRET_KEY">
+		acesstoken
+	</a>
+</body>
+</html>
