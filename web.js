@@ -1,23 +1,37 @@
 var express = require('express');
+var request = require('request');
+var conf 	= require('./conf');
 
 var app = express();
 
-// https://github.com/visionmedia/express/blob/master/examples/ejs/index.js
+// Ver: https://github.com/visionmedia/express/blob/master/examples/ejs/index.js
 app.engine('.html', require('ejs').__express);
 app.set('views', __dirname + '/views');
 app.set('view engine', 'html');
 
-app.get('/', function(request, response) {
-	response.send('Hello World!');
+app.get('/', function(req, res) {
+	res.render('index', {
+		conf: conf,
+	});
 });
 
 app.get('/linkedin', function(req, res) {
+	var code = req.query.code
+	var state = req.query.state
+
+	var accessTokenUrl = "https://www.linkedin.com/uas/oauth2/accessToken"
+										+ "?grant_type=authorization_code"
+										+ "&code=" + code
+										+ "&redirect_uri=" + conf.appUrl
+										+ "&client_id=" + conf.apiKey
+										+ "&client_secret=" + conf.secretKey;
 
 	res.render('linkedin', {
-		code: req.query.code,
-		state: req.query.state
+		conf: conf,
+		accessTokenUrl: accessTokenUrl,
+		code: code,
+		state: state
 	});
-
 });
 
 var port = process.env.PORT || 5000;
