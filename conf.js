@@ -10,7 +10,7 @@
   //
   nconf.argv()
        .env()
-       .file({ file: '.env.json' });
+//       .file({ file: '.env.json' });
 
   module.exports = {
     apiKey: nconf.get("API_Key"),
