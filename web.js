@@ -26,12 +26,15 @@ app.get('/linkedin', function(req, res) {
 										+ "&client_id=" + conf.apiKey
 										+ "&client_secret=" + conf.secretKey;
 
-	res.render('linkedin', {
-		conf: conf,
-		accessTokenUrl: accessTokenUrl,
-		code: code,
-		state: state
-	});
+	request(accessTokenUrl, function (error, response, body) {
+		res.render('linkedin', {
+			conf: conf,
+			code: code,
+			state: state,
+			response: JSON.parse(body),
+		});
+	})
+
 });
 
 var port = process.env.PORT || 5000;

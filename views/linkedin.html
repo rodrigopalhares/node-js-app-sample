@@ -5,7 +5,11 @@
 	<ul>
 		<li>code: <%= code %></li>
 		<li>state: <%= state %></li>
+		<li>error: <%= response.error %></li>
+		<li>error_description: <%= response.error_description %></li>
+		<li>expires_in: <%= response.expires_in %></li>
+		<li>access_token: <%= response.access_token %></li>
+		<li>response: <%= JSON.stringify(response) %></li>
 	</ul>
-	<a href="<%= accessTokenUrl %>">acesstoken</a>
 </body>
 </html>
