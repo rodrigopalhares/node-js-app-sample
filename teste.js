@@ -1,7 +1,6 @@
 var request = require('request');
 var conf 	= require('./conf');
 
-var appUrl = "http://secure-sierra-7245.herokuapp.com/linkedin";
 var code = "AQTpW09x0P-8GLcLnEYvO9KKzwg9TXQl6OO7L-jxpbZB5Ic9GKU9efUqE0J97iIQj4oacGgUj9VpFfWfpm4u561i48Zgej75PfmDbO5EBfOjohzIS98"
 
 var accessTokenUrl = "https://www.linkedin.com/uas/oauth2/accessToken"
@@ -13,8 +12,12 @@ var accessTokenUrl = "https://www.linkedin.com/uas/oauth2/accessToken"
 
 console.log(accessTokenUrl);
 
-request(accessTokenUrl, function (error, response, body) {
-	//if (!error && response.statusCode == 200) {
-		console.log(body) // Print the google web page.
-	//}
-})
+var doRequest = function () {
+	request(accessTokenUrl, function (error, response, body) {
+		//if (!error && response.statusCode == 200) {
+			console.log(body) // Print the google web page.
+		//}
+	})
+}
+
+doRequest();

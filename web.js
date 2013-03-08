@@ -1,17 +1,22 @@
 var express = require('express');
 var request = require('request');
+var ejs 	= require('ejs');
 var conf 	= require('./conf');
 
 var app = express();
 
 // Ver: https://github.com/visionmedia/express/blob/master/examples/ejs/index.js
-app.engine('.html', require('ejs').__express);
+ejs.open = '{{';
+ejs.close = '}}';
+app.engine('.html', ejs.__express);
 app.set('views', __dirname + '/views');
 app.set('view engine', 'html');
 
 app.get('/', function(req, res) {
 	res.render('index', {
 		conf: conf,
+		scope: req.query.scope || "r_fullprofile,r_emailaddress",
+		state: req.query.state || "asdfasdfasdf",
 	});
 });
 
@@ -27,11 +32,15 @@ app.get('/linkedin', function(req, res) {
 										+ "&client_secret=" + conf.secretKey;
 
 	request(accessTokenUrl, function (error, response, body) {
+		var bodyData = JSON.parse(body);
+		var peopleUrl = "https://api.linkedin.com/v1/people/~?oauth2_access_token=" + bodyData.access_token
+
 		res.render('linkedin', {
 			conf: conf,
 			code: code,
 			state: state,
-			response: JSON.parse(body),
+			peopleUrl: peopleUrl,
+			response: bodyData,
 		});
 	})
 
