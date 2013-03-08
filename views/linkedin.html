@@ -1,19 +1,24 @@
 <html>
 <head>
-	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js" type="text/javascript"></script>
+	<link href="/public/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
 </head>
 <body>
-	<h1>Hello Linkedin!!!</h1>
-	<a href="/">[home]</a>
-	<ul>
-		<li><b>code:</b> {{= code }}</li>
-		<li><b>state:</b> {{= state }}</li>
-		<li><b>error:</b> {{= response.error || '' }}</li>
-		<li><b>error_description:</b> {{= response.error_description || '' }}</li>
-		<li><b>expires_in:</b> {{= response.expires_in || '' }}</li>
-		<li><b>access_token:</b> {{= response.access_token || '' }}</li>
-		<li><b>response:</b> <pre>{{= JSON.stringify(response, null, 4) }}</pre></li>
-	</ul>
-	<a href="{{= peopleUrl }}">[Dados do usuário]</a>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js" type="text/javascript"></script>
+	<script src="/public/bootstrap/js/bootstrap.min.js"></script>
+
+	<div class="container">
+		<h1>Hello Linkedin!!!</h1>
+		<a href="/">[home]</a>
+		<ul>
+			<li><b>code:</b> {{= code }}</li>
+			<li><b>state:</b> {{= state }}</li>
+			<li><b>error:</b> {{= response.error || '' }}</li>
+			<li><b>error_description:</b> {{= response.error_description || '' }}</li>
+			<li><b>expires_in:</b> {{= response.expires_in || '' }}</li>
+			<li><b>access_token:</b> {{= response.access_token || '' }}</li>
+		</ul>
+		<b>response:</b> <pre>{{= JSON.stringify(response, null, 4) }}</pre>
+		<a href="{{= peopleUrl }}">[Dados do usuário]</a>
+	</div>
 </body>
 </html>
